@@ -1,4 +1,4 @@
-const SERVER_ROOT = 'http://localhost:7878';
+const SERVER_ROOT = 'http://28ee072f.ngrok.io';
 const getUrl = (path) => `${SERVER_ROOT}/${path}`;
 
 export const getGalleryData = () => {

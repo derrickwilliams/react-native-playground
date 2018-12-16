@@ -9,19 +9,38 @@ import {
     Left,
     Body,
     Icon,
-    Text
+    Card,
+    CardItem,
+    Text,
+    H1,
+    H2,
+    H3,
+    Badge
 } from 'native-base';
 
-export default class PhotoListScreen extends Component {
+const mapPhotosToViewModel = (photos) => photos.map(p => {
+    debugger
+    const [_, path] = p.split('sample-photos');
+    const parts = path.split('/');
+    const [name] = parts.splice(-1);
+    const album = parts.filter(p => p !== "").join('/');
+
+    return {
+        name,
+        album
+    };
+});
+
+export default class PhotoFileListScreen extends Component {
     static defaultProps = {
         onNavBack: () => undefined,
         photos: []
     }
 
+    state = {}
+
     constructor(props) {
         super(props);
-
-        this.state = {}
     }
 
     render = () => {
@@ -30,6 +49,8 @@ export default class PhotoListScreen extends Component {
         if (photos.length === 0) {
             return <PhotosEmptyState />
         }
+
+        console.log('list', mapPhotosToViewModel(photos));
 
         return (
             <Container>
@@ -44,7 +65,20 @@ export default class PhotoListScreen extends Component {
                     </Body>
                 </Header>
                 <Content>
-
+                    {mapPhotosToViewModel(photos).map(p => (
+                        <Card key={p.name}>
+                            <CardItem header>
+                                <H3>{p.name}</H3>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    <Badge style={{ backgroundColor: '#c6c6c6' }}>
+                                        <Text>album: /{p.album}</Text>
+                                    </Badge>
+                                </Body>
+                            </CardItem>
+                        </Card>
+                    ))}
                 </Content>
             </Container>
         );

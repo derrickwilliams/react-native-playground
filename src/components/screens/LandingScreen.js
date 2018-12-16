@@ -44,10 +44,10 @@ export default class LandingScreen extends Component {
                         Photo File List
                     </WideButton>
                     <WideButton vPad={5} onPress={() => console.log('going to screen XYZ')}>
-                        Action #3
+                        Typography
                     </WideButton>
                     <WideButton vPad={5} onPress={() => console.log('going to screen XYZ')}>
-                        Action #4
+                        Finger Drawing
                     </WideButton>
                     <WideButton vPad={5} onPress={() => console.log('going to screen XYZ')}>
                         Action #5
